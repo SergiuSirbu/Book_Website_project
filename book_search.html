@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Book Search</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
+  <script>
+    $(document).ready(function() {
+      $("#searchForm").submit(function(event) {
+        event.preventDefault(); // This is to prevent default from submission
+
+        var searchTerm = $("#searchInput").val();
+        $.ajax({
+          url: "fetch_books.php", 
+          data: { search: searchTerm },
+          dataType: "json", 
+          success: function(data) {
+            $("#searchResults").empty(); // This is to clear old results
+            if (data.length > 0) {
+              for (var i = 0; i < data.length; i++) {
+                $("#searchResults").append(
+                  "<div>" + data[i].title + " by " + data[i].author + "</div>"
+                );
+              }
+            } else {
+              $("#searchResults").append("<div>No books found</div>"); 
+            }
+          }
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+  <form id="searchForm">
+    <input type="text" id="searchInput" placeholder="Enter your search">
+    <button type="submit">Search</button>
+  </form>
+  <div id="searchResults"></div>
+</body>
+</html>
