@@ -19,3 +19,44 @@ button {
     cursor: pointer;
 }
 
+@media (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+    .container {
+        width: 100%;
+        padding: 10px;
+    }
+    .card {
+        width: 100%;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+    .container {
+        width: 80%;
+    }
+    .card {
+        width: 48%;
+    }
+}
+
+@media (min-width: 1025px) {
+    .container {
+        width: 60%;
+    }
+    .card {
+        width: 30%;
+    }
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.card {
+    flex: 1 1 calc(33.333% - 20px);
+    margin: 10px;
+}
